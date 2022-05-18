@@ -1,0 +1,108 @@
+{% extends 'patience-header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment Form</title>
+</head>
+<body>
+    <div class="col-md-6 col-sm-6">
+     <form action="" method="POST">
+          {% csrf_token %}
+        <!-- CONTACT FORM HERE -->
+        <!-- <form id="appointment-form" role="form" method="post" action="#">
+          {% csrf_token %} -->
+          <h5 style="color: red;">{{msg}}</h5>
+
+             <!-- SECTION TITLE -->
+             <div class="section-title wow fadeInUp" data-wow-delay="0.4s">
+                  <h3>Make an Appointment with <strong style="color: red;">{{data.doctor_id.first_name}}</strong></h3>
+             </div>
+
+            
+
+             <div class="wow fadeInUp" data-wow-delay="0.8s">
+                  <div class="col-md-6 col-sm-6">
+                       <label for="name">Name</label>
+                       <input type="text" class="form-control" id="name" name="name" value="{{user.first_name}}" placeholder="Full Name">
+                  </div>
+
+                  <div class="col-md-6 col-sm-6">
+                       <label for="email">Email</label>
+                       <input type="email" class="form-control" id="email" name="email" value="{{user.email}}" placeholder="Your Email">
+                  </div><br>
+                  <div class="col-md-6 col-sm-6">
+                    <label for="email">Doctor Name</label>
+                    <input type="text" class="form-control" id="email" name="timeslot" value="{{data.doctor_id.first_name}}" disabled>
+               </div>
+     
+                  <div class="col-md-6 col-sm-6">
+                       <label for="date">Clinic Name</label>
+                       <input type="text" name="weeks" value="{{data.doctor_id.clinic_name}}" disabled>
+                  </div><br>
+     
+                  <div class="col-md-6 col-sm-6">
+                    <label for="date">Time Slot</label>
+                    
+                     {% if data.timeslot == 0 %}
+                   <input type="text" value="09:00 am To 10:00 am" disabled>
+                    {% elif data.timeslot == 1 %}
+                   <input type="text" value="10:00 am TO 11:00 am" disabled>
+                    {% elif data.timeslot == 2 %}
+                   <input type="text" value="11:00 am To 12:00 am" disabled>
+                    {% elif data.timeslot == 3 %}
+                   <input type="text" value="12:00 am To 01:00 pm" disabled>
+                    {% elif data.timeslot == 4 %}
+                   <input type="text" value="02:00 pm To 03:00 pm" disabled>
+                    {% elif data.timeslot == 5 %}
+                   <input type="text" value="03:00 pm To 04:00 pm" disabled>
+                    {% elif data.timeslot == 6 %}
+                   <input type="text" value="04:00 pm To 05:00 pm" disabled>
+                    {% endif %}
+                  </div>
+
+                  <div class="col-md-6 col-sm-6">
+                    <label for="date">Day</label>
+                    
+                     {% if data.weeks  == 0 %}
+                   <input type="text" value="Monday" disabled>
+                    {% elif data.weeks == 1 %}
+                   <input type="text" value="Tuesday" disabled>
+                    {% elif data.weeks == 2 %}
+                   <input type="text" value="Wednesday" disabled>
+                    {% elif data.weeks == 3 %}
+                   <input type="text" value="Thrusday" disabled>
+                    {% elif data.weeks == 4 %}
+                   <input type="text" value="Friday" disabled>
+                    {% elif data.weeks == 5 %}
+                   <input type="text" value="Saturday" disabled>
+                    {% elif data.weeks == 6 %}
+                   <input type="text" value="Sunday" disabled>
+                    {% endif %}
+                  </div>
+
+                  <div class="col-md-6 col-sm-6">
+                    <label for="date"> Doctor Speciality</label>
+                    <input type="text" name="weeks" value="{{data.doctor_id.speciality}}" disabled>
+                  </div>
+
+
+                  <div class="col-md-12 col-sm-12">
+                       <label for="telephone">Phone Number</label>
+                       <input type="tel" class="form-control" id="phone" name="phone" placeholder="Phone">
+                       <label for="Message">Additional Message</label>
+                       <textarea class="form-control" rows="5" id="message" name="description" placeholder="Message"></textarea><br>
+                       <button type="submit" class="form-control" id="cf-submit" name="submit">Submit Button</button>
+                  </div>
+             </div>
+       <!-- </form> -->
+     </form>
+   </div>
+    
+</body>
+</html>
+{% endblock %}

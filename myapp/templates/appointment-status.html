@@ -1,0 +1,77 @@
+{% extends 'patience-header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slot Views</title>
+</head>
+<body>
+    <h5 style="color: red;">{{msg}}</h5>
+    <table class="table table-striped table-dark">
+        
+        <thead>
+          <tr>
+            <th scope="col">User</th>
+            <th scope="col">Weeks</th>
+            <th scope="col">TimeSlot</th>
+            <th scope="col">Description</th>
+            <th scope="col">Details</th>
+
+          </tr>
+        </thead>
+        <tbody>
+            {% for one in many %}
+          <tr>
+        <td>{{one.name}}</td>
+        {% if one.weeks == 0 %}
+        <td>Monday</td>
+        {% elif one.weeks == 1 %}
+        <td>Tuesday</td>
+        {% elif one.weeks == 2 %}
+        <td>Wednesday</td>
+        {% elif one.weeks == 3 %}
+        <td>Thrusday</td>
+        {% elif one.weeks == 4 %}
+        <td>Friday</td>
+        {% elif one.weeks == 5 %}
+        <td>Saturday</td>
+        {% else %}
+        <td>Sunday</td>
+        {% endif %}
+
+        {% if one.slot.timeslot == 0 %}
+            <td>09:00 am To 10:00 am</td>
+            {% elif one.slot.timeslot == 1 %}
+            <td>10:00 am TO 11:00 am</td>
+            {% elif one.slot.timeslot == 2 %}
+            <td>11:00 am To 12:00 am</td>
+            {% elif one.slot.timeslot == 3 %}
+            <td>12:00 am To 01:00 pm</td>
+            {% elif one.slot.timeslot == 4 %}
+            <td>02:00 pm To 03:00 pm</td>
+            {% elif one.slot.timeslot == 5 %}
+            <td>03:00 pm To 04:00 pm</td>
+            {% elif one.slot.timeslot == 6 %}
+            <td>04:00 pm To 05:00 pm</td>
+            {% endif %}
+
+        <td>{{one.description}}</td>
+        {% if one.status == 1 %}
+        <td>Appointment Accepted  <strong>{{one.slot.doctor_id}}</strong></td>
+        {% elif one.status == 2 %}
+        <td><strong>{{one.slot.doctor_id}} </strong> Absent Today</td>
+        {% elif one.status == 3 %}
+        <td><strong>{{one.slot.doctor_id}} </strong> Cancelled Your Appointment</td>
+        {% endif %}
+        {% endfor %}
+          </tr>  
+          </tbody>
+      </table>
+</body>
+</html>
+
+{% endblock %}

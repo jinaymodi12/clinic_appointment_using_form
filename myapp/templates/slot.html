@@ -1,0 +1,31 @@
+{% extends 'doctor1-header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=\, initial-scale=1.0">
+    <title>Slot Add</title>
+</head>
+<body><br><hr>
+    {% for msg in messages %}
+    <h5 style="color: red;" class="text-center">{{msg}}</h5>
+    {% endfor %}
+    <form  method="POST">
+        {% csrf_token %}
+        <label class="col-md-3 label-control" for="projectinput6">Weekly Slot</label>
+        {{form.weeks}}
+        <label class="col-md-3 label-control" for="projectinput6">Time Slot</label>
+        {{form.timeslot}}
+
+      <input type="submit" value="Add" class="text-center">
+    </form>
+    
+
+    
+</body>
+</html>
+
+{% endblock %}

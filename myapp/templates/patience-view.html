@@ -1,0 +1,52 @@
+{% extends 'patience-header.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <h2>List Of Doctor</h2>
+  <table class="table table-bordered">
+  <form action="{% url 'patience-view' %}">
+
+    <thead>
+      <tr>
+        <th>NAME</th>
+        <th>EMAIL</th>
+        <th>GENDER</th>
+        <th>Clinic Name</th>
+        <th>SPECIALITY</th>
+        <th colspan="1">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for one in many %}
+
+      <tr>
+        <td>{{one.name}}</td>
+        <td>{{one.email}}</td>
+        <td>{{one.gender}}</td>
+        <td>{{one.clinic_name}}</td>
+        <td>{{one.speciality}}</td>
+        <td><a href="{% url 'appointment' one.id %}"><button class="btn btn-success"><i class=""></i>View Appointment</button></a>  </td>
+        
+      </tr>
+    </form>
+      {% endfor %}
+      
+    </tbody>
+  </table>
+</div>
+
+</body>
+</html>
+{% endblock %}
+

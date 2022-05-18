@@ -1,0 +1,89 @@
+{% extends 'patience-header.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <h2>SLOT DETAILS</h2>
+  <table class="table table-bordered">
+
+    <thead>
+{% if slot %}
+      <tr>
+        <th>Weeks</th>
+        <th>TIME SLOT</th>
+        <th>Available Slot</th>
+        
+        <th colspan="1">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for one in slot %}
+
+      <tr>
+        {% if one.weeks == 0 %}
+        <td>Monday</td>
+        {% elif one.weeks == 1 %}
+        <td>Tuesday</td>
+        {% elif one.weeks == 2 %}
+        <td>Wednesday</td>
+        {% elif one.weeks == 3 %}
+        <td>Thrusday</td>
+        {% elif one.weeks == 4 %}
+        <td>Friday</td>
+        {% elif one.weeks == 5 %}
+        <td>Saturday</td>
+        {% else %}
+        <td>Sunday</td>
+        {% endif %}
+
+        {% if one.timeslot == 0 %}
+        <td>09:00 am To 10:00 am</td>
+        {% elif one.timeslot == 1 %}
+        <td>10:00 am TO 11:00 am</td>
+        {% elif one.timeslot == 2 %}
+        <td>11:00 am To 12:00 am</td>
+        {% elif one.timeslot == 3 %}
+        <td>12:00 am To 01:00 pm</td>
+        {% elif one.timeslot == 4 %}
+        <td>02:00 pm To 03:00 pm</td>
+        {% elif one.timeslot == 5 %}
+        <td>03:00 pm To 04:00 pm</td>
+        {% elif one.timeslot == 6 %}
+        <td>04:00 pm To 05:00 pm</td>
+        {% endif %}
+
+        {% if one.slotsize >= 1  %}
+        
+          <td>{{one.slotsize}}</td>
+        <td><a href="{% url 'appointment-form' one.id %}"><button class="btn btn-success"><i class=""></i>BOOK</button></a>  </td>
+        {% else %}
+        <td style="color: red;">NO APPOINTMENT AVAILABLE!!</td>
+        {% endif %}
+        
+      </tr>
+    </tr>
+    {% endfor %}
+   
+    </form>
+{% else %}
+      <h4 style="color: red;" class="text-center">DATA NOT UPLOADED BY <strong>Doctor</strong></h4>
+{% endif %}
+      
+    </tbody>
+  </table>
+</div>
+
+</body>
+</html>
+{% endblock %}
+

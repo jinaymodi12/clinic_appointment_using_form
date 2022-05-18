@@ -1,0 +1,50 @@
+{% extends 'patience-header.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <h2>List Of Doctor</h2>
+  <table class="table table-bordered">
+    <thead>
+ 
+      <tr>
+        <th>Doctor Name</th>
+        <th>Gender</th>
+        <th>Speciality</th>
+        <th>Email</th>
+        <th>Clinic Name</th>
+        <th colspan="1">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for one in user %}
+      <tr>
+        <td>{{one.first_name}}</td>
+        <td>{{one.gender}}</td>
+        <td>{{one.speciality}}</td>
+        <td>{{one.email}}</td>
+        <td>{{one.clinic_name}}</td>
+        <td><a href="{% url 'slot-detail' one.id %}"><button class="btn btn-danger"><i class=""></i>View Slot</button></a>  </td> 
+        
+        {% endfor %}
+ 
+      
+      
+    </tbody>
+  </table>
+</div>
+
+</body>
+</html>
+{% endblock %}
+

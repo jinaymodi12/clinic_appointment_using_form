@@ -1,0 +1,76 @@
+{% extends 'patience-header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slot Views</title>
+</head>
+<body>
+    <h5 style="color: red;">{{msg}}</h5>
+    <table class="table table-striped table-dark">
+        <thead>
+          <tr>
+            <th scope="col">Weeks</th>
+            <th scope="col">TimeSlot</th>
+            <th scope="col">SlotSize</th>
+            <th colspan="2">Action</th>
+
+          </tr>
+        </thead>
+        <tbody>
+            {% for one in data %}
+          <tr>
+       {% if data.doctor_name == pk %}
+              {% if one.weeks == 0 %}
+            <td>Monday</td>
+            {% elif one.weeks == 1 %}
+            <td>Tuesday</td>
+            {% elif one.weeks == 2 %}
+            <td>Wednesday</td>
+            {% elif one.weeks == 3 %}
+            <td>Thrusday</td>
+            {% elif one.weeks == 4 %}
+            <td>Friday</td>
+            {% elif one.weeks == 5 %}
+            <td>Saturday</td>
+            {% else %}
+            <td>Sunday</td>
+       {% endif %}
+            {% endif %}
+      
+
+            {% if one.timeslot == 0 %}
+            <td>09:00 am To 10:00 am</td>
+            {% elif one.timeslot == 1 %}
+            <td>10:00 am TO 11:00 am</td>
+            {% elif one.timeslot == 2 %}
+            <td>11:00 am To 12:00 am</td>
+            {% elif one.timeslot == 3 %}
+            <td>12:00 am To 01:00 pm</td>
+            {% elif one.timeslot == 4 %}
+            <td>02:00 pm To 03:00 pm</td>
+            {% elif one.timeslot == 5 %}
+            <td>03:00 pm To 04:00 pm</td>
+            {% else %}
+            <td>04:00 pm To 05:00 pm</td>
+            {% endif %}
+            
+            <td>{{one.slotsize}}</td>
+            
+            {% if one.slotsize > 0 %}
+            <td><a href="{% url 'appointment-form' one.id %}"><button class="btn btn-warning"><i class=""></i>Book</button></a>  </td>
+            {% endif %}
+
+                                 
+          </tr>
+          {% endfor %}
+          </tbody>
+      </table>
+</body>
+</html>
+
+{% endblock %}
